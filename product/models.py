@@ -14,6 +14,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
     active = models.BooleanField(default=True)
+    image = models.ImageField(blank=True, null=True, max_length=254)
 
 class Variation(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
