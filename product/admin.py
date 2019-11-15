@@ -8,8 +8,8 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Category, CategoryAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description', 'category', 'price', 'active', 'image']
-    list_filter = ['category']
+    list_display = ['title', 'category', 'price', 'active']
+    list_filter = ['category', 'active']
     search_fields = ['title']
 admin.site.register(Product, ProductAdmin)
 

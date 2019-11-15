@@ -9,6 +9,7 @@ from product.models import Product
 #         return render(request, 'homepage/index.html', Products)
 
 def Home(request):
-    Products = {'Products': Product.objects.all()}
+    Active_Products = filter(lambda product: product.active, Product.objects.all())
+    Products = {'Products': Active_Products}
     return render(request, 'homepage/index.html', Products) 
    
