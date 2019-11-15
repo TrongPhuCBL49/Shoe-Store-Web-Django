@@ -3,6 +3,18 @@
 
 {% block title %}Trang chủ{% endblock %}
 
+{% block banner-area %}
+	{% include 'homepage/home-banner.html' %}	
+{% endblock banner-area %}
+
+{% block features-area %}
+	{% include 'homepage/features.html' %}	
+{% endblock features-area %}
+
+{% block category-area %}
+	{% include 'homepage/category.html' %}	
+{% endblock category-area %}
+
 {% block product %}
 	<section class="owl-carousel active-product-area section_gap">
 		<!-- single product slide -->
@@ -109,3 +121,15 @@
 		</div>
 	</section> 
 {% endblock %}
+
+{% block exclusive-deal %}
+	{% include 'homepage/exclusive-deal.html' %}
+{% endblock exclusive-deal %}
+
+{% block brand-section_gap %}
+	{% include 'homepage/brand-section_gap.html' %}
+{% endblock brand-section_gap %}
+
+{% block related-product %}	
+	{% include 'homepage/related-product.html' %}
+{% endblock related-product %}

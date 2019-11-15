@@ -11,5 +11,5 @@ from product.models import Product
 def Home(request):
     Active_Products = filter(lambda product: product.active, Product.objects.all())
     Products = {'Products': Active_Products}
-    return render(request, 'homepage/index.html', Products) 
+    return render(request, 'homepage/home.html', Products) 
    
