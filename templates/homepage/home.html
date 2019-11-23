@@ -49,7 +49,7 @@
 					{% for Product in Products %}
 						<div class="col-lg-3 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="{{Product.image.url}}" width="262px" height="280px" alt="">
+								<a href="{% url 'product:product-detail' Product.id %}"><img class="img-fluid" src="{{Product.image.url}}" width="262px" height="280px" alt=""></a>
 								<div class="product-details">
 									<h6>{{Product.title}}</h6>
 									<br>
@@ -59,11 +59,11 @@
 									</div>
 									<div class="prd-bottom">
 
-										<a href="" class="social-info">
+										<a href="{% static 'homepage/cart.html' %}" class="social-info">
 											<span class="ti-bag"></span>
 											<p class="hover-text">add to bag</p>
 										</a>
-										<a href="" class="social-info">
+										<a href="{% static 'homepage/login.html' %}" class="social-info">
 											<span class="lnr lnr-heart"></span>
 											<p class="hover-text">Wishlist</p>
 										</a>
