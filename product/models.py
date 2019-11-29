@@ -6,7 +6,7 @@ class Category(models.Model):
     title = models.CharField(max_length=100, default='')
     slug = models.CharField(max_length=100, default='')
     description = models.TextField(default='', null=True)
-    parent_Id = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
+    parent_Id = models.ForeignKey("self", models.SET_NULL, blank=True, null=True, related_name="parent_Ids")
     active = models.BooleanField(default=True)
     def __str__(self):
         return self.title

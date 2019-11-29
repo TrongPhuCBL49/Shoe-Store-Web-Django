@@ -23,11 +23,15 @@
 				<div class="sidebar-categories">
 					<div class="head">Browse Categories</div>
 					<ul class="main-categories">
-						{% for Category in Categories %}
-							<li class="main-nav-list"><a data-toggle="collapse" href="#{{ Category.slug }}" aria-expanded="false" aria-controls="{{ Category.slug }}"><span
-									class="lnr lnr-arrow-right"></span>{{ Category.title }}<span class="number"></span></a>
-								<ul class="collapse" id="{{ Category.slug }}" data-toggle="collapse" aria-expanded="false" aria-controls="{{ Category.slug }}">
-									<li class="main-nav-list child"><a href="#">{{ Category.title }}<span class="number"></span></a></li>
+						{% for Categories_parent in Categories_parents %}
+							<li class="main-nav-list">
+								<a data-toggle="collapse" href="#{{ Categories_parent.slug }}" aria-expanded="false" aria-controls="{{ Categories_parent.slug }}">
+									<span class="lnr lnr-arrow-right"></span>{{ Categories_parent.title }}<span class="number"></span>
+								</a>
+								<ul class="collapse" id="{{ Categories_parent.slug }}" data-toggle="collapse" aria-expanded="false" aria-controls="{{ Categories_parent.slug }}">
+									{% for Category in Categories_parent.parent_Ids.all %}
+										<li class="main-nav-list child"><a href="{% url 'product:category' Category.slug %}">{{ Category.title }}<span class="number"></span></a></li>								
+									{% endfor %}
 								</ul>
 							</li>
 						{% endfor %}
