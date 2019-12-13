@@ -4,4 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomerUser(AbstractUser):
     phone_number = models.CharField(max_length=15, default='')
+    country = models.CharField(max_length=50, default='')
+    province = models.CharField(max_length=50, default='')
+    district = models.CharField(max_length=50, default='')
     address = models.CharField(max_length=255, default='')
+    postcode = models.CharField(max_length=10, default='')
