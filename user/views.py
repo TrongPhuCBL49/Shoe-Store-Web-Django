@@ -1,11 +1,32 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .form import LoginForm
-from django.contrib.auth import authenticate, login
+from .form import LoginForm, RegisterForm
+from django.contrib.auth import authenticate, login, get_user_model
+from .models import CustomerUser
 # Create your views here.
 
+User = get_user_model()
+
+
 def RegisterView(request):
-    return render(request, 'user/register.html')
+    form = RegisterForm(request.POST or None)
+    context = {"form": form}
+    if form.is_valid():
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        email = form.cleaned_data.get("email")
+        first_name = form.cleaned_data.get("first_name")
+        last_name = form.cleaned_data.get("last_name")
+        country = form.cleaned_data.get("country")
+        phone_number = form.cleaned_data.get("phone_number")
+        province = form.cleaned_data.get("province")
+        distric = form.cleaned_data.get("distric")
+        address = form.cleaned_data.get("address")
+        postcode = form.cleaned_data.get("postcode")
+        new_user = User.objects.create_superuser(username, email, password, first_name,
+                                                 last_name, country, phone_number, province, distric, address, postcode)
+    return render(request, 'user/register.html', context)
+
 
 def LoginView(request):
     form = LoginForm(request.POST or None)
@@ -14,8 +35,9 @@ def LoginView(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(request, username=username, password=password)
+        print(user)
         if user is not None:
+            print(user)
             login(request, user)
             return redirect("/home")
     return render(request, 'user/login.html', context)
-

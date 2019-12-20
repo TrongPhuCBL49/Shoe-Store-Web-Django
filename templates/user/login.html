@@ -36,8 +36,24 @@
                         <form class="row login_form" action="" method="post" id="loginForm" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="col-md-12 form-group">
-                                {{form.username}}
-                                {{form.password}}
+                                {% if form.errors %}
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger">
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <div class="alert alert-danger">
+                                            <strong>{{ error|escape }}</strong>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}    
+                            </div>                        
+                            <div class="col-md-12 form-group">
+                                    {{form.username}}
+                                    {{form.password}}
                                 <div class="creat_account">
                                     <input type="checkbox" id="f-option2" name="selector">
                                     <label for="f-option2">Keep me logged in</label>
