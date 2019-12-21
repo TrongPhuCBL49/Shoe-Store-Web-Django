@@ -23,8 +23,9 @@ def RegisterView(request):
         distric = form.cleaned_data.get("distric")
         address = form.cleaned_data.get("address")
         postcode = form.cleaned_data.get("postcode")
-        new_user = User.objects.create_superuser(username, email, password, first_name,
-                                                 last_name, country, phone_number, province, distric, address, postcode)
+        new_user = User.objects.create_superuser(username, email, first_name, last_name, phone_number, country, province, distric, address, postcode, password)
+        if new_user is not None:
+            return redirect("/user/login")
     return render(request, 'user/register.html', context)
 
 
@@ -35,9 +36,7 @@ def LoginView(request):
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
         user = authenticate(request, username=username, password=password)
-        print(user)
         if user is not None:
-            print(user)
             login(request, user)
             return redirect("/home")
     return render(request, 'user/login.html', context)
